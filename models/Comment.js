@@ -30,7 +30,7 @@ Comment.init(
       model: 'user',
       key: id
     },
-    comment_info: {
+    comment_body: {
       type: DataTypes.STRING,
       allowNull: false,
     },

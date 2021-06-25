@@ -22,9 +22,9 @@ Post.init(
         key: 'id'
       }
     },
-    comment_info: {
+    body: {
       type: DataTypes.STRING,
-      allowNull: false,
+      
     }
   },
   {

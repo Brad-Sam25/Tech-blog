@@ -30,7 +30,7 @@ router.get('/post/:id', async (req, res) => {
               'id', 
               'user_id', 
               'post_id', 
-              'comment_info', 
+              'comment_body', 
               'current_date'
             ],
           include: {
