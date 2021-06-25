@@ -6,7 +6,6 @@ router.get('/', withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       where: {
-        // TODO: SET USERID TO THE LOGGED-IN USER ID
         user_id: req.session.user_id
       },
     });
@@ -29,22 +28,25 @@ router.get('/new', withAuth, (req, res) => {
 });
 
 router.get('/edit/:id', withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id);
+  if (!req.sessions.loggedIn) {
+    res.redirect('/login')
+  } else {
+      try {
+      const postData = await Post.findByPk(req.params.id);
 
-    if (postData) {
-      const post = postData.get({ plain: true });
+      if (postData) {
+        const post = postData.get({ plain: true });
 
-      res.render('edit-post', {
-        layout: 'dashboard',
-        post,
-      });
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    res.redirect('login');
-  }
+        res.render('edit-post', {
+          layout: 'dashboard',
+          post,
+        });
+      } else {
+        res.status(404).end();
+      }
+    } catch (err) {
+      res.redirect('login');
+    }}
 });
 
 module.exports = router;
