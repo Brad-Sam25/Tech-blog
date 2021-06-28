@@ -20,15 +20,15 @@ Comment.init(
       allowNull: true,
       references: {
         model: 'user',
-        key: id
+        key: 'userId'
       }
     },
     post_id: {
-      type: DataTypes.INTERGER,
+      type: DataTypes.INTEGER,
       allowNull: true,
       // foriegnkey: user.id
-      model: 'user',
-      key: id
+      model: 'post',
+      key: 'postId'
     },
     comment_body: {
       type: DataTypes.STRING,

@@ -17,30 +17,20 @@ router.get('/', async (req, res) => {
 });
 
 // get single post
-router.get('/post/:id', async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect('/login')
-  } else {  
+router.get('/post/:id', async (req, res) => { 
       try {
       const postData = await Post.findByPk( req.params.id, {
           include: [
           { 
             model: Comment, 
-            attributes: [
+            through: User,
+            as: [
               'id', 
               'user_id', 
               'post_id', 
               'comment_body', 
               'current_date'
-            ],
-          include: {
-            model: User,
-            attributes: [
-              'id',
-              'username',
-              'password',
             ]
-          },
         }]
         }
       );
@@ -55,7 +45,6 @@ router.get('/post/:id', async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  }
 });
 
 router.get('/login', (req, res) => {
