@@ -22,9 +22,9 @@ Post.init(
         key: 'userId'
       }
     },
-    body: {
+    body_text: {
       type: DataTypes.STRING,
-      
+      allowNull: false
     }
   },
   {
