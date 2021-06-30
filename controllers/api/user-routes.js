@@ -1,12 +1,56 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Post } = require('../../models');
+
+// router.get('/', async (req, res) => {
+//   try {
+//     const userData = await User.findAll({
+//           attributes: ['username']
+//     });
+
+//     const users = userData.map((user) => user.get({ plain: true }));
+
+//     res.render('main', { 
+//       users, 
+//       logged_in: req.session.logged_in 
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const userData = await User.findOne({
+//       where: {
+//         id: req.params.id
+//       },
+//       include: {
+//         model: Post,
+//         attributes: [
+//           'id',
+//           'title'
+//         ]
+//       }
+//     });
+
+//     const users = userData.map((user) => user.get({ plain: true }));
+
+//     res.render('main', { 
+//       users, 
+//       logged_in: req.session.logged_in 
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // URL: /api/user
 router.post('/', async (req, res) => {
   try {
-    const newUser = await User.create(
-      req.body
-    );
+    const newUser = await User.create({
+      username: req.body.username,
+      password: req.body.password
+    });
 
     req.session.save(() => {
       console.log(newUser)
