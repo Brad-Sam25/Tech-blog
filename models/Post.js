@@ -22,10 +22,10 @@ Post.init(
         key: 'userId'
       }
     },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    }
+    // content: {
+    //   type: DataTypes.TEXT,
+    //   allowNull: false
+    // }
   },
   {
     sequelize,
