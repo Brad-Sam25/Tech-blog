@@ -12,7 +12,7 @@ router.get('/', withAuth, async (req, res) => {
         'id',
         'title',
         'user_id',
-        // 'post-text'
+        'body'
       ], 
       include: [
         { 
@@ -21,11 +21,13 @@ router.get('/', withAuth, async (req, res) => {
           'id',
           'title',
           'user_id',
-        ],
-        include: {
-          model: User,
-          attributes: ['username']
-        }  
+          'body', 
+          'post_id'
+        ]
+        // include: {
+        //   model: User,
+        //   attributes: ['username']
+        // }  
       }]
     });
 
