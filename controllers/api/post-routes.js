@@ -9,10 +9,12 @@ router.post('/', withAuth, async (req, res) => {
         // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
         ...body,
         // TODO: SET USERID TO LOGGEDIN USERID
-        user_id: req.session.user_id
-  
+        user_id: req.session.userId
       });
       res.json(newPost);
+      console.log("!!!!!!!!!!!!!!!!!!!!!!")
+      console.log("newPost", newPost)
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!")
     } catch (err) {
       res.status(500).json(err);
     }
